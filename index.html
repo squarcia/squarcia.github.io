@@ -71,23 +71,43 @@
   .btn-primary{background:var(--signal);border-color:var(--signal);color:#fff}
   .btn-primary:hover{background:#152fa6;border-color:#152fa6;color:#fff}
 
-  /* ---------- signature trace ---------- */
-  .scope{width:100%;height:auto;display:block}
-  .scope .grid-line{stroke:var(--rule);stroke-width:1}
-  .scope .axis{stroke:var(--muted);stroke-width:1}
-  .scope .wave{fill:none;stroke:var(--ink);stroke-width:2.25;stroke-linejoin:round;stroke-linecap:round}
-  .scope .band{fill:rgba(27,59,209,.09)}
-  .scope .tick{stroke:var(--signal);stroke-width:1.5;stroke-dasharray:3 3}
-  .scope text{font-family:var(--mono);font-size:9.5px;fill:var(--muted);letter-spacing:.02em}
-  .scope .pulse{fill:var(--trace)}
-  .pulse{animation:sweep 6.5s cubic-bezier(.42,0,.58,1) infinite}
-  @keyframes sweep{
-    0%{transform:translateX(0);opacity:0}
-    6%{opacity:1}
-    94%{opacity:1}
-    100%{transform:translateX(300px);opacity:0}
+  /* ---------- signature: forward pass ---------- */
+  .net{width:100%;height:auto;display:block}
+  .net .edges line{stroke:var(--rule);stroke-width:1}
+  .net .signal{
+    fill:none;stroke:var(--signal);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:26 900;stroke-dashoffset:26;
+    animation:propagate 5.6s linear infinite;
   }
-  @media (prefers-reduced-motion:reduce){.pulse{animation:none;transform:translateX(150px)}}
+  @keyframes propagate{
+    0%{stroke-dashoffset:26;opacity:0}
+    8%{opacity:.95}
+    82%{opacity:.95}
+    100%{stroke-dashoffset:-900;opacity:0}
+  }
+  .net .node{
+    fill:var(--paper);stroke:var(--ink);stroke-width:1.5;
+    animation:fire 5.6s ease-in-out infinite;
+  }
+  .net .node.out{stroke:var(--trace)}
+  @keyframes fire{
+    0%,14%{fill:var(--paper)}
+    22%{fill:var(--signal)}
+    40%,100%{fill:var(--paper)}
+  }
+  .net text{font-family:var(--mono);font-size:9.5px;fill:var(--muted);letter-spacing:.02em}
+  @media (prefers-reduced-motion:reduce){
+    .net .signal{animation:none;stroke-dasharray:none;opacity:.55}
+    .net .node{animation:none}
+  }
+
+  /* ---------- portrait ---------- */
+  .portrait{
+    width:112px;height:112px;border-radius:50%;overflow:hidden;
+    margin:0 0 1.5rem;background:var(--panel);
+    box-shadow:0 0 0 4px var(--paper),0 0 0 5px var(--rule);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
 
   /* ---------- sections ---------- */
   section{padding:3.25rem 0}
@@ -168,6 +188,7 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
+      <div class="portrait"><img src="assets/adelmo.jpg" alt="Portrait of Adelmo Brunelli" width="112" height="112" loading="eager"></div>
       <h1>Adelmo Brunelli</h1>
       <p class="role">Robotics software engineer — real-time control, robot learning, sim-to-real</p>
       <p class="lede">I work on the two ends of a robot: the deterministic control and communication layer that has to meet its deadline every cycle, and the learned policy that decides what the robot should do next.</p>
@@ -175,31 +196,121 @@
         <a class="btn btn-primary" href="assets/Adelmo-Brunelli-CV.pdf">Download CV (PDF)</a>
         <a class="btn" href="mailto:adelmobrunelli@gmail.com">Email me</a>
         <a class="btn" href="https://github.com/squarcia">GitHub</a>
-        <a class="btn" href="https://it.linkedin.com/in/adelmo-brunelli-2725561a3">LinkedIn</a>
+        <a class="btn" href="https://www.linkedin.com/in/adelmo-brunelli/">LinkedIn</a>
       </div>
     </div>
 
-    <svg class="scope" viewBox="0 0 320 210" role="img" aria-label="A timing diagram of a periodic control loop: a square wave with a fixed cycle time and a jitter margin.">
-      <g class="grid-line">
-        <line x1="10" y1="30" x2="310" y2="30"/>
-        <line x1="10" y1="70" x2="310" y2="70"/>
-        <line x1="10" y1="110" x2="310" y2="110"/>
-        <line x1="10" y1="150" x2="310" y2="150"/>
+<svg class="net" viewBox="0 0 320 210" role="img" aria-label="A diagram of a small feed-forward neural network, with signals propagating from the input layer to the output layer.">
+      <g class="edges">
+        <line x1="42" y1="64" x2="122" y2="38"/>
+        <line x1="42" y1="64" x2="122" y2="64"/>
+        <line x1="42" y1="64" x2="122" y2="92"/>
+        <line x1="42" y1="64" x2="122" y2="118"/>
+        <line x1="42" y1="64" x2="122" y2="146"/>
+        <line x1="42" y1="64" x2="122" y2="172"/>
+        <line x1="42" y1="92" x2="122" y2="38"/>
+        <line x1="42" y1="92" x2="122" y2="64"/>
+        <line x1="42" y1="92" x2="122" y2="92"/>
+        <line x1="42" y1="92" x2="122" y2="118"/>
+        <line x1="42" y1="92" x2="122" y2="146"/>
+        <line x1="42" y1="92" x2="122" y2="172"/>
+        <line x1="42" y1="118" x2="122" y2="38"/>
+        <line x1="42" y1="118" x2="122" y2="64"/>
+        <line x1="42" y1="118" x2="122" y2="92"/>
+        <line x1="42" y1="118" x2="122" y2="118"/>
+        <line x1="42" y1="118" x2="122" y2="146"/>
+        <line x1="42" y1="118" x2="122" y2="172"/>
+        <line x1="42" y1="146" x2="122" y2="38"/>
+        <line x1="42" y1="146" x2="122" y2="64"/>
+        <line x1="42" y1="146" x2="122" y2="92"/>
+        <line x1="42" y1="146" x2="122" y2="118"/>
+        <line x1="42" y1="146" x2="122" y2="146"/>
+        <line x1="42" y1="146" x2="122" y2="172"/>
+        <line x1="122" y1="38" x2="202" y2="38"/>
+        <line x1="122" y1="38" x2="202" y2="64"/>
+        <line x1="122" y1="38" x2="202" y2="92"/>
+        <line x1="122" y1="38" x2="202" y2="118"/>
+        <line x1="122" y1="38" x2="202" y2="146"/>
+        <line x1="122" y1="38" x2="202" y2="172"/>
+        <line x1="122" y1="64" x2="202" y2="38"/>
+        <line x1="122" y1="64" x2="202" y2="64"/>
+        <line x1="122" y1="64" x2="202" y2="92"/>
+        <line x1="122" y1="64" x2="202" y2="118"/>
+        <line x1="122" y1="64" x2="202" y2="146"/>
+        <line x1="122" y1="64" x2="202" y2="172"/>
+        <line x1="122" y1="92" x2="202" y2="38"/>
+        <line x1="122" y1="92" x2="202" y2="64"/>
+        <line x1="122" y1="92" x2="202" y2="92"/>
+        <line x1="122" y1="92" x2="202" y2="118"/>
+        <line x1="122" y1="92" x2="202" y2="146"/>
+        <line x1="122" y1="92" x2="202" y2="172"/>
+        <line x1="122" y1="118" x2="202" y2="38"/>
+        <line x1="122" y1="118" x2="202" y2="64"/>
+        <line x1="122" y1="118" x2="202" y2="92"/>
+        <line x1="122" y1="118" x2="202" y2="118"/>
+        <line x1="122" y1="118" x2="202" y2="146"/>
+        <line x1="122" y1="118" x2="202" y2="172"/>
+        <line x1="122" y1="146" x2="202" y2="38"/>
+        <line x1="122" y1="146" x2="202" y2="64"/>
+        <line x1="122" y1="146" x2="202" y2="92"/>
+        <line x1="122" y1="146" x2="202" y2="118"/>
+        <line x1="122" y1="146" x2="202" y2="146"/>
+        <line x1="122" y1="146" x2="202" y2="172"/>
+        <line x1="122" y1="172" x2="202" y2="38"/>
+        <line x1="122" y1="172" x2="202" y2="64"/>
+        <line x1="122" y1="172" x2="202" y2="92"/>
+        <line x1="122" y1="172" x2="202" y2="118"/>
+        <line x1="122" y1="172" x2="202" y2="146"/>
+        <line x1="122" y1="172" x2="202" y2="172"/>
+        <line x1="202" y1="38" x2="282" y2="78"/>
+        <line x1="202" y1="38" x2="282" y2="105"/>
+        <line x1="202" y1="38" x2="282" y2="132"/>
+        <line x1="202" y1="64" x2="282" y2="78"/>
+        <line x1="202" y1="64" x2="282" y2="105"/>
+        <line x1="202" y1="64" x2="282" y2="132"/>
+        <line x1="202" y1="92" x2="282" y2="78"/>
+        <line x1="202" y1="92" x2="282" y2="105"/>
+        <line x1="202" y1="92" x2="282" y2="132"/>
+        <line x1="202" y1="118" x2="282" y2="78"/>
+        <line x1="202" y1="118" x2="282" y2="105"/>
+        <line x1="202" y1="118" x2="282" y2="132"/>
+        <line x1="202" y1="146" x2="282" y2="78"/>
+        <line x1="202" y1="146" x2="282" y2="105"/>
+        <line x1="202" y1="146" x2="282" y2="132"/>
+        <line x1="202" y1="172" x2="282" y2="78"/>
+        <line x1="202" y1="172" x2="282" y2="105"/>
+        <line x1="202" y1="172" x2="282" y2="132"/>
       </g>
-      <rect class="band" x="10" y="46" width="300" height="8"/>
-      <g class="tick">
-        <line x1="70" y1="24" x2="70" y2="164"/>
-        <line x1="130" y1="24" x2="130" y2="164"/>
-        <line x1="190" y1="24" x2="190" y2="164"/>
-        <line x1="250" y1="24" x2="250" y2="164"/>
+      <g class="signals">
+        <polyline class="signal" style="animation-delay:0.00s" points="42,118 122,64 202,118 282,132"/>
+        <polyline class="signal" style="animation-delay:0.62s" points="42,64 122,38 202,146 282,78"/>
+        <polyline class="signal" style="animation-delay:1.24s" points="42,118 122,146 202,38 282,132"/>
+        <polyline class="signal" style="animation-delay:1.86s" points="42,92 122,38 202,38 282,105"/>
+        <polyline class="signal" style="animation-delay:2.48s" points="42,146 122,38 202,64 282,78"/>
       </g>
-      <path class="wave" d="M10,130 L40,130 L40,50 L70,50 L70,130 L100,130 L100,50 L130,50 L130,130 L160,130 L160,50 L190,50 L190,130 L220,130 L220,50 L250,50 L250,130 L280,130 L280,50 L310,50"/>
-      <circle class="pulse" cx="10" cy="130" r="4"/>
-      <g class="axis"><line x1="10" y1="164" x2="310" y2="164"/></g>
-      <text x="10" y="180">t</text>
-      <text x="76" y="180">1 ms</text>
-      <text x="196" y="180">3 ms</text>
-      <text x="10" y="22">jitter margin</text>
+      <g class="nodes">
+        <circle class="node" style="animation-delay:0.00s" cx="42" cy="64" r="5.5"/>
+        <circle class="node" style="animation-delay:0.00s" cx="42" cy="92" r="5.5"/>
+        <circle class="node" style="animation-delay:0.00s" cx="42" cy="118" r="5.5"/>
+        <circle class="node" style="animation-delay:0.00s" cx="42" cy="146" r="5.5"/>
+        <circle class="node" style="animation-delay:0.34s" cx="122" cy="38" r="5.5"/>
+        <circle class="node" style="animation-delay:0.34s" cx="122" cy="64" r="5.5"/>
+        <circle class="node" style="animation-delay:0.34s" cx="122" cy="92" r="5.5"/>
+        <circle class="node" style="animation-delay:0.34s" cx="122" cy="118" r="5.5"/>
+        <circle class="node" style="animation-delay:0.34s" cx="122" cy="146" r="5.5"/>
+        <circle class="node" style="animation-delay:0.34s" cx="122" cy="172" r="5.5"/>
+        <circle class="node" style="animation-delay:0.68s" cx="202" cy="38" r="5.5"/>
+        <circle class="node" style="animation-delay:0.68s" cx="202" cy="64" r="5.5"/>
+        <circle class="node" style="animation-delay:0.68s" cx="202" cy="92" r="5.5"/>
+        <circle class="node" style="animation-delay:0.68s" cx="202" cy="118" r="5.5"/>
+        <circle class="node" style="animation-delay:0.68s" cx="202" cy="146" r="5.5"/>
+        <circle class="node" style="animation-delay:0.68s" cx="202" cy="172" r="5.5"/>
+        <circle class="node out" style="animation-delay:1.02s" cx="282" cy="78" r="5.5"/>
+        <circle class="node out" style="animation-delay:1.02s" cx="282" cy="105" r="5.5"/>
+        <circle class="node out" style="animation-delay:1.02s" cx="282" cy="132" r="5.5"/>
+      </g>
+      <text x="42" y="200" text-anchor="middle">state</text>
+      <text x="282" y="200" text-anchor="middle">action</text>
     </svg>
   </div>
 </header>
@@ -309,7 +420,7 @@
       <a class="btn btn-primary" href="mailto:adelmobrunelli@gmail.com">adelmobrunelli@gmail.com</a>
       <a class="btn" href="assets/Adelmo-Brunelli-CV.pdf">Download CV (PDF)</a>
       <a class="btn" href="https://github.com/squarcia">GitHub</a>
-      <a class="btn" href="https://it.linkedin.com/in/adelmo-brunelli-2725561a3">LinkedIn</a>
+      <a class="btn" href="https://www.linkedin.com/in/adelmo-brunelli/">LinkedIn</a>
     </div>
   </section>
 </main>
