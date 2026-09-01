@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adelmo Brunelli — Robotics Software Engineer</title>
+<meta name="description" content="Robotics software engineer working on real-time control, robot learning and sim-to-real transfer. MSc in AI, ex-Imperial College London, now R&amp;D at Leonardo.">
+<meta property="og:title" content="Adelmo Brunelli — Robotics Software Engineer">
+<meta property="og:description" content="Real-time control, robot learning and sim-to-real transfer.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e9ebee;
+    --panel:#f4f5f7;
+    --ink:#131c26;
+    --muted:#5c6975;
+    --rule:#c9ced5;
+    --signal:#1b3bd1;
+    --trace:#c8801c;
+    --sans:"IBM Plex Sans",system-ui,sans-serif;
+    --serif:"Source Serif 4",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --measure:64ch;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:1.0625rem;
+    line-height:1.62;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:64rem;margin:0 auto;padding:0 1.5rem}
+  a{color:var(--signal);text-decoration:none;border-bottom:1px solid rgba(27,59,209,.32)}
+  a:hover{border-bottom-color:var(--signal)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+  h1,h2,h3,.sans{font-family:var(--sans)}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:5.5rem 0 3rem}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center}
+  h1{
+    font-size:clamp(2.6rem,6.5vw,4.15rem);
+    line-height:1.02;
+    font-weight:600;
+    letter-spacing:-.035em;
+    margin:0 0 .9rem;
+  }
+  .role{
+    font-family:var(--sans);
+    font-size:1.0625rem;
+    font-weight:500;
+    color:var(--muted);
+    margin:0 0 1.6rem;
+    letter-spacing:-.005em;
+  }
+  .lede{max-width:46ch;margin:0 0 2rem;font-size:1.1rem}
+  .hero-links{display:flex;flex-wrap:wrap;gap:.5rem;font-family:var(--sans);font-size:.9375rem}
+  .btn{
+    display:inline-block;padding:.6rem 1.05rem;border-radius:2px;
+    border:1px solid var(--ink);color:var(--ink);font-weight:500;
+    background:transparent;transition:background .15s ease,color .15s ease;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);border-bottom-color:var(--ink)}
+  .btn-primary{background:var(--signal);border-color:var(--signal);color:#fff}
+  .btn-primary:hover{background:#152fa6;border-color:#152fa6;color:#fff}
+
+  /* ---------- signature trace ---------- */
+  .scope{width:100%;height:auto;display:block}
+  .scope .grid-line{stroke:var(--rule);stroke-width:1}
+  .scope .axis{stroke:var(--muted);stroke-width:1}
+  .scope .wave{fill:none;stroke:var(--ink);stroke-width:2.25;stroke-linejoin:round;stroke-linecap:round}
+  .scope .band{fill:rgba(27,59,209,.09)}
+  .scope .tick{stroke:var(--signal);stroke-width:1.5;stroke-dasharray:3 3}
+  .scope text{font-family:var(--mono);font-size:9.5px;fill:var(--muted);letter-spacing:.02em}
+  .scope .pulse{fill:var(--trace)}
+  .pulse{animation:sweep 6.5s cubic-bezier(.42,0,.58,1) infinite}
+  @keyframes sweep{
+    0%{transform:translateX(0);opacity:0}
+    6%{opacity:1}
+    94%{opacity:1}
+    100%{transform:translateX(300px);opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){.pulse{animation:none;transform:translateX(150px)}}
+
+  /* ---------- sections ---------- */
+  section{padding:3.25rem 0}
+  .section-head{
+    font-family:var(--sans);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;
+    margin:0 0 2rem;padding-bottom:.6rem;border-bottom:1px solid var(--rule);
+  }
+  p{max-width:var(--measure)}
+
+  /* ---------- experience rail ---------- */
+  .rail{position:relative;margin:0;padding:0 0 0 7.5rem;list-style:none}
+  .rail::before{
+    content:"";position:absolute;left:6rem;top:.55rem;bottom:.55rem;width:1px;background:var(--rule);
+  }
+  .rail li{position:relative;margin-bottom:2.6rem}
+  .rail li:last-child{margin-bottom:0}
+  .rail li::before{
+    content:"";position:absolute;left:-1.62rem;top:.62rem;width:9px;height:9px;
+    border-radius:50%;background:var(--paper);border:2px solid var(--muted);
+  }
+  .rail li.current::before{background:var(--signal);border-color:var(--signal)}
+  .when{
+    position:absolute;left:-7.5rem;top:.28rem;width:5.4rem;text-align:right;
+    font-family:var(--mono);font-size:.78rem;line-height:1.45;color:var(--muted);
+  }
+  .job{font-family:var(--sans);font-size:1.125rem;font-weight:600;margin:0;letter-spacing:-.012em}
+  .org{font-family:var(--sans);font-size:.9375rem;color:var(--muted);margin:.1rem 0 .7rem}
+  .rail p{margin:0 0 .6rem;font-size:1rem}
+  .rail p:last-child{margin-bottom:0}
+
+  /* ---------- research feature ---------- */
+  .feature{background:var(--panel);border-left:3px solid var(--signal);padding:1.75rem 1.9rem;border-radius:0 2px 2px 0}
+  .feature h3{font-size:1.25rem;font-weight:600;margin:0 0 .2rem;letter-spacing:-.015em}
+  .feature .org{margin-bottom:.9rem}
+  .feature p{font-size:1rem}
+  .feature ul{margin:.9rem 0 0;padding-left:1.1rem;font-size:1rem}
+  .feature li{margin-bottom:.4rem}
+  .partners{
+    margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--rule);
+    font-family:var(--sans);font-size:.875rem;color:var(--muted);max-width:none;
+  }
+
+  /* ---------- skills ---------- */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem 3rem;margin:0}
+  .skills dt{font-family:var(--sans);font-weight:600;font-size:.9375rem;margin-bottom:.35rem}
+  .skills dd{margin:0;font-size:.99rem;color:var(--muted);line-height:1.55}
+
+  /* ---------- education ---------- */
+  .edu{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+  .edu h3{font-family:var(--sans);font-size:1.0625rem;font-weight:600;margin:0 0 .15rem}
+  .edu .org{margin-bottom:.55rem}
+  .edu p{font-size:.99rem;margin:0}
+
+  /* ---------- contact ---------- */
+  .contact{padding-bottom:4rem}
+  .contact p{font-size:1.1rem;max-width:52ch}
+  .contact-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem;font-family:var(--sans);font-size:.9375rem}
+  footer{
+    border-top:1px solid var(--rule);padding:1.5rem 0 2.5rem;
+    font-family:var(--sans);font-size:.8125rem;color:var(--muted);
+  }
+  footer p{max-width:none;margin:0}
+
+  @media (max-width:820px){
+    header.hero{padding:3.25rem 0 1.5rem}
+    .hero-grid{grid-template-columns:1fr;gap:2.25rem}
+    .skills,.edu{grid-template-columns:1fr}
+    .rail{padding-left:0}
+    .rail::before{left:4px}
+    .rail li{padding-left:1.6rem}
+    .rail li::before{left:0}
+    .when{position:static;width:auto;text-align:left;display:block;margin-bottom:.3rem}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Adelmo Brunelli</h1>
+      <p class="role">Robotics software engineer — real-time control, robot learning, sim-to-real</p>
+      <p class="lede">I work on the two ends of a robot: the deterministic control and communication layer that has to meet its deadline every cycle, and the learned policy that decides what the robot should do next.</p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="assets/Adelmo-Brunelli-CV.pdf">Download CV (PDF)</a>
+        <a class="btn" href="mailto:adelmobrunelli@gmail.com">Email me</a>
+        <a class="btn" href="https://github.com/squarcia">GitHub</a>
+        <a class="btn" href="https://it.linkedin.com/in/adelmo-brunelli-2725561a3">LinkedIn</a>
+      </div>
+    </div>
+
+    <svg class="scope" viewBox="0 0 320 210" role="img" aria-label="A timing diagram of a periodic control loop: a square wave with a fixed cycle time and a jitter margin.">
+      <g class="grid-line">
+        <line x1="10" y1="30" x2="310" y2="30"/>
+        <line x1="10" y1="70" x2="310" y2="70"/>
+        <line x1="10" y1="110" x2="310" y2="110"/>
+        <line x1="10" y1="150" x2="310" y2="150"/>
+      </g>
+      <rect class="band" x="10" y="46" width="300" height="8"/>
+      <g class="tick">
+        <line x1="70" y1="24" x2="70" y2="164"/>
+        <line x1="130" y1="24" x2="130" y2="164"/>
+        <line x1="190" y1="24" x2="190" y2="164"/>
+        <line x1="250" y1="24" x2="250" y2="164"/>
+      </g>
+      <path class="wave" d="M10,130 L40,130 L40,50 L70,50 L70,130 L100,130 L100,50 L130,50 L130,130 L160,130 L160,50 L190,50 L190,130 L220,130 L220,50 L250,50 L250,130 L280,130 L280,50 L310,50"/>
+      <circle class="pulse" cx="10" cy="130" r="4"/>
+      <g class="axis"><line x1="10" y1="164" x2="310" y2="164"/></g>
+      <text x="10" y="180">t</text>
+      <text x="76" y="180">1 ms</text>
+      <text x="196" y="180">3 ms</text>
+      <text x="10" y="22">jitter margin</text>
+    </svg>
+  </div>
+</header>
+
+<main>
+  <section id="work" class="wrap">
+    <h2 class="section-head">Where I have worked</h2>
+    <ul class="rail">
+
+      <li class="current">
+        <span class="when">May 2026<br>present</span>
+        <h3 class="job">Advanced R&amp;D Software Engineer</h3>
+        <p class="org">Leonardo Global Solutions, Aerospace &amp; Defense · La Spezia, IT</p>
+        <p>Research on reliable Ethernet-based communication: deterministic, low-latency and fault-tolerant data exchange under hard real-time constraints — the same requirements that govern distributed robot control loops and sensor buses.</p>
+        <p>Design, integration and on-target validation of terrestrial and naval defense systems against stringent reliability and safety requirements.</p>
+      </li>
+
+      <li>
+        <span class="when">Mar 2025<br>Apr 2026</span>
+        <h3 class="job">Embedded Software Engineer</h3>
+        <p class="org">Capgemini Engineering · La Spezia, IT</p>
+        <p>Hard real-time systems and low-latency architectures for deterministic communication in mission-critical environments. Low-level programming, IEEE real-time networking standards, and the characterisation of latency variance and jitter — measuring not just whether a system is fast, but whether it is predictable.</p>
+      </li>
+
+      <li>
+        <span class="when">Mar 2024<br>Mar 2025</span>
+        <h3 class="job">AI Research Assistant — Robotics</h3>
+        <p class="org">Imperial College London, SPIKE Group · London, UK</p>
+        <p>Reinforcement learning for a legged robot, from simulator to hardware. Described in full below.</p>
+      </li>
+
+      <li>
+        <span class="when">Sep 2020<br>Jan 2021</span>
+        <h3 class="job">Software Engineer</h3>
+        <p class="org">Amazon · Remote</p>
+        <p>An Alexa skill on AWS: interaction flows invoked over HTTPS, backend logic in Node.js, structured data in SQL and MySQL.</p>
+      </li>
+
+    </ul>
+  </section>
+
+  <section id="research" class="wrap">
+    <h2 class="section-head">Selected work</h2>
+    <article class="feature">
+      <h3>Teaching a quadruped to follow instructions it was never explicitly rewarded for</h3>
+      <p class="org">Imperial College London · SPIKE Group, led by Prof. Alessandra Russo</p>
+      <p>Standard reinforcement learning assumes the next best action depends only on the current state. Many useful robot tasks break that assumption: visit A, then B, but never enter C. I developed a neuro-symbolic reinforcement learning algorithm that encodes this kind of temporally extended, non-Markovian task as a symbolic structure the learning agent can reason over, and trained a Unitree Go2 Pro quadruped against it.</p>
+      <ul>
+        <li>Built the full pipeline in the NVIDIA Isaac Simulator: environment modelling, reward specification, training and policy evaluation.</li>
+        <li>Ran sim-to-real transfer onto the physical robot, with quantitative validation of the gap between simulated and measured performance.</li>
+        <li>Extended the approach explored in my MSc thesis, <em>Reward Machines for Real World Navigation</em>.</li>
+      </ul>
+      <p class="partners">Part of an international collaboration with the University of Cardiff, the University of Brescia and UCLA, funded by the DEVCOM Army Research Laboratory.</p>
+    </article>
+  </section>
+
+  <section id="skills" class="wrap">
+    <h2 class="section-head">What I work with</h2>
+    <dl class="skills">
+      <div>
+        <dt>Robotics &amp; simulation</dt>
+        <dd>NVIDIA Isaac Simulator, legged platforms (Unitree Go2 Pro), sim-to-real transfer, reinforcement learning, reward machines, neuro-symbolic methods</dd>
+      </div>
+      <div>
+        <dt>Real-time &amp; embedded</dt>
+        <dd>Hard real-time systems on Linux, deterministic Ethernet, IEEE real-time networking protocols, low-level programming, latency and jitter analysis</dd>
+      </div>
+      <div>
+        <dt>Programming</dt>
+        <dd>C/C++, Python, Rust, Java/Scala, Bash, SQL (Postgres), Julia, R</dd>
+      </div>
+      <div>
+        <dt>Machine learning</dt>
+        <dd>TensorFlow, Keras, Scikit-Learn, NumPy, Pandas, HuggingFace, MLflow, Apache Spark, AWS SageMaker, GCP Vertex AI</dd>
+      </div>
+      <div>
+        <dt>Tools</dt>
+        <dd>Git, Docker, Kubernetes, TensorBoard, Matlab, Google Colab, VS Code, IntelliJ</dd>
+      </div>
+      <div>
+        <dt>Languages</dt>
+        <dd>Italian (native), English (C1, IELTS UKVI 7.0), German (basic)</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="education" class="wrap">
+    <h2 class="section-head">Education</h2>
+    <div class="edu">
+      <div>
+        <h3>MSc, Artificial Intelligence and Data Engineering</h3>
+        <p class="org">University of Pisa · February 2025</p>
+        <p>Thesis: <em>Reward Machines for Real World Navigation</em>, on temporally extended task specification for robot navigation. Supervised by A. Russo and M. Cimino.</p>
+      </div>
+      <div>
+        <h3>BASc, Computing Engineering</h3>
+        <p class="org">University of Pisa · January 2022</p>
+        <p>Algorithms, software engineering and embedded systems. Thesis on behavioural analysis of new Twitter accounts, supervised by M. Avvenuti.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap contact">
+    <h2 class="section-head">Get in touch</h2>
+    <p>I am open to robotics software roles — real-time control, robot learning, simulation and autonomy. In Italy, abroad or remote.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:adelmobrunelli@gmail.com">adelmobrunelli@gmail.com</a>
+      <a class="btn" href="assets/Adelmo-Brunelli-CV.pdf">Download CV (PDF)</a>
+      <a class="btn" href="https://github.com/squarcia">GitHub</a>
+      <a class="btn" href="https://it.linkedin.com/in/adelmo-brunelli-2725561a3">LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Adelmo Brunelli · Based in Italy · Built as a static page, hosted on GitHub Pages</p>
+  </div>
+</footer>
+
+</body>
+</html>
